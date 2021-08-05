@@ -16,3 +16,9 @@ cra/cra myProject
 cd myProject
 npm start
 ```
+
+or
+
+```
+npm run build
+```
