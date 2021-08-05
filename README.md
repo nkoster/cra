@@ -1,7 +1,7 @@
 # cra
 "Create React App"
 
-Create a React project boilerplate with hot reload.
+Create a React project boilerplate, with hot reload.
 
 This thing exists because the "create-react-app" started to behave in a way I don't like.
 
