@@ -85,17 +85,27 @@ module.exports = {
 CRA
 
 mkdir src
+mkdir assets
 
 cat > src/index.html << CRA
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>React Boilerplate</title>
-</head>
-<body>
-  <div id="root"></div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="assets/blacksquare.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="CRA"
+    />
+    <link rel="manifest" href="assets/manifest.json" />
+    <title>CRA</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
 </html>
 CRA
 
@@ -203,8 +213,6 @@ npm i @babel/core @babel/preset-env @babel/preset-react webpack \
 webpack-cli webpack-dev-server babel-loader css-loader \
 style-loader html-webpack-plugin copy-webpack-plugin --save-dev
 
-mkdir assets
-
 cat > assets/blacksquare.svg << CRA
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
@@ -230,3 +238,6 @@ cat > assets/blacksquare.svg << CRA
   </g>
 </svg>
 CRA
+
+git add ./
+git commit -m 'Initial'
