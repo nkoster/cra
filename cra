@@ -14,6 +14,11 @@ cd $1
 npm init -y
 git init
 
+cat > .gitignore << CRA
+node_modules
+build
+CRA
+
 npm i react react-dom
 
 cat > .babelrc << CRA
@@ -94,25 +99,91 @@ cat > src/index.html << CRA
 </html>
 CRA
 
-cat > "src/HelloWorld.js" << CRA
+cat > "src/App.js" << CRA
 import React from 'react'
+import './App.css'
 
-const HelloWorld = () => {
+const App = () => {
   return (
-      <h3>Hello World</h3>
+    <div className='App'>
+      <h3>App</h3>
+      <img src='../assets/blacksquare.svg' />
+    </div>
   )
 }
 
-export default HelloWorld
+export default App
 CRA
 
 cat > src/index.js << CRA
 import React from 'react'
 import { render } from 'react-dom'
+import './index.css'
 
-import HelloWorld from './HelloWorld'
+import App from './App'
 
-render(<HelloWorld />, document.getElementById('root'))
+render(<App />, document.getElementById('root'))
+CRA
+
+cat > src/index.css << CRA
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+table, th, td {
+  border: 12px solid transparent;
+}
+
+hr {
+  right: 0;
+  transform-origin: right center;
+}
+CRA
+
+cat > src/App.css << CRA
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+input {
+  color: #333 !important;
+}
+
+div {
+  color: #333;
+}
+
+.list {
+  font-size: calc(3px + 2vmin);
+  border: solid 1px red;
+  text-align: left;
+}
 CRA
 
 cat > npm_scripts << CRA
