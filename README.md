@@ -14,6 +14,7 @@ Usage:
 git clone https://github.com/nkoster/cra
 cra/cra myProject
 cd myProject
+code .
 npm start
 ```
 
