@@ -30,8 +30,8 @@ cat > .babelrc << CRA
 CRA
 
 cat > webpack.config.js << CRA
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   output: {
@@ -71,7 +71,7 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
-};
+}
 CRA
 
 mkdir src
@@ -90,26 +90,25 @@ cat > src/index.html << CRA
 CRA
 
 cat > "src/HelloWorld.js" << CRA
-import React from 'react';
+import React from 'react'
 
 const HelloWorld = () => {
   return (
       <h3>Hello World</h3>
-  );
-};
+  )
+}
 
-export default HelloWorld;
+export default HelloWorld
 CRA
 
 cat > src/index.js << CRA
-import React from 'react';
-import { render } from 'react-dom';
+import React from 'react'
+import { render } from 'react-dom'
 
-import HelloWorld from './HelloWorld';
+import HelloWorld from './HelloWorld'
 
-render(<HelloWorld />, document.getElementById('root'));
+render(<HelloWorld />, document.getElementById('root'))
 CRA
-
 
 cat > npm_scripts << CRA
 {
