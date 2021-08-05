@@ -1,7 +1,7 @@
 # cra
 "Create React App"
 
-Create a React project boilerplate, "hot reload" included.
+Create a React project boilerplate, "hot reload" included. (disclaimer: this is home grown shell crap)
 
 This thing exists because the "[create-react-app](https://www.npmjs.com/package/create-react-app)" started to behave in a way Niels doesn't like.
 
