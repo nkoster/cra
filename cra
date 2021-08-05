@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ "$#" -ne 1 ]; then
+  echo "Specify a React project directory."
+  exit 1 
+fi
+
+mkdir $1
+
+cd $1
+
+npm init -y
+git init
+
+npm i react react-dom
+
+npm i @babel/core @babel/preset-env @babel/preset-react webpack \
+webpack-cli webpack-dev-server babel-loader css-loader \
+style-loader html-webpack-plugin
+
+cat > .babelrc << CRA
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
+CRA
+
+cat > webpack.config.js << CRA
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
+  },
+  resolve: {
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    alias: {
+      react: path.join(__dirname, 'node_modules', 'react'),
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+};
+CRA
+
+mkdir src
+
+cat > src/index.html << CRA
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Boilerplate</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+CRA
+
+cat > "src/HelloWorld.js" << CRA
+import React from 'react';
+
+const HelloWorld = () => {
+  return (
+      <h3>Hello World</h3>
+  );
+};
+
+export default HelloWorld;
+CRA
+
+cat > src/index.js << CRA
+import React from 'react';
+import { render } from 'react-dom';
+
+import HelloWorld from './HelloWorld';
+
+render(<HelloWorld />, document.getElementById('root'));
+CRA
+
+
+cat > npm_scripts << CRA
+{
+  "scripts": {
+    "start": "webpack serve --mode=development --open --hot",
+    "build": "webpack --mode=production"
+  },
+CRA
+
+tail -n +2 package.json | \
+egrep -v 'scripts|test|},' >> npm_scripts
+
+mv npm_scripts package.json
+
