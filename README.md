@@ -24,4 +24,3 @@ or
 npm run build
 ```
 
-Includes Babel >7.4, which provides support for ES2015+ stuff, like async/await.
