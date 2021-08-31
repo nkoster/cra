@@ -129,6 +129,7 @@ cat > src/index.js << CRA
 import React from 'react'
 import { render } from 'react-dom'
 import './index.css'
+import 'regenerator-runtime'
 
 import App from './App'
 
@@ -211,7 +212,7 @@ mv npm_scripts package.json
 
 npm i @babel/core @babel/preset-env @babel/preset-react webpack \
 webpack-cli webpack-dev-server babel-loader css-loader \
-style-loader html-webpack-plugin copy-webpack-plugin --save-dev
+@babel/plugin-transform-runtime style-loader html-webpack-plugin \ copy-webpack-plugin --save-dev
 
 cat > assets/blacksquare.svg << CRA
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
